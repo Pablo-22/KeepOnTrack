@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Cronometer } from 'src/app/model/cronometer/cronometer';
+import { TimersDeckComponent } from '../../pages/timers-deck/timers-deck.component';
+import { StopwatchesService } from '../../services/stopwatches/stopwatches.service';
 
 @Component({
   selector: 'stopwatch',
@@ -9,12 +11,16 @@ import { Cronometer } from 'src/app/model/cronometer/cronometer';
 export class StopwatchComponent implements OnInit {
 
   @Input()
-  time:Cronometer = new Cronometer();
+  cronometer:Cronometer = new Cronometer();
 
   title:string = 'Título';
 
+  chronometerCall:any;
 
-  constructor() {
+  @Input()
+  deleteCallback:any;
+
+  constructor(private stopwatchesService:StopwatchesService) {
   }
 
   ngOnInit(): void {
@@ -25,23 +31,71 @@ export class StopwatchComponent implements OnInit {
   }
 
   incrementTime(){
-    this.time.isStarted = true;
+    this.cronometer.isStarted = true;
 
-    this.time.seconds++;
+    this.cronometer.seconds++;
 
-    if (this.time.seconds > 60) {
-      this.time.seconds = 0;
-      this.time.minutes++;
+    if (this.cronometer.seconds > 60) {
+      this.cronometer.seconds = 0;
+      this.cronometer.minutes++;
     }
 
-    if (this.time.minutes > 60) {
-      this.time.hours++;
+    if (this.cronometer.minutes > 60) {
+      this.cronometer.hours++;
     }
 
-    this.time.timeOutputString = `${this.time.hours}:${this.time.minutes}:${this.time.hours}`;
+    this.cronometer.timeOutputString = `${this.cronometer.hours}:${this.cronometer.minutes}:${this.cronometer.hours}`;
   }
 
   onPlay(){
-    let chronometerCall = setInterval(this.incrementTime, 1000);
+    if(!this.cronometer.isStarted){
+
+      this.chronometerCall = setInterval(() =>{
+        this.cronometer.isStarted = true;
+        
+        this.cronometer.seconds++;
+        
+        if (this.cronometer.seconds > 60) {
+          this.cronometer.seconds = 0;
+          this.cronometer.minutes++;
+        }
+        
+        if (this.cronometer.minutes > 60) {
+          this.cronometer.seconds = 0;
+          this.cronometer.minutes = 0;
+          this.cronometer.hours++;
+        }
+        
+        this.cronometer.timeOutputString = `${this.cronometer.hours.toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+          useGrouping: false})
+        
+        }:${this.cronometer.minutes.toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+          useGrouping: false})
+        
+        }:${this.cronometer.seconds.toLocaleString('en-US', {
+          minimumIntegerDigits: 2,
+          useGrouping: false})
+        
+        }`;
+      }, 1000);
+    }
+  }
+
+  onPause(){
+    if(this.chronometerCall){
+      clearInterval(this.chronometerCall);
+      this.cronometer.isStarted = false;
+    }
+  }
+
+  onReset(){
+    this.onPause();
+    this.cronometer = new Cronometer();
+  }
+
+  onDelete(){
+    this.stopwatchesService.deleteCronometer(this.cronometer.id);
   }
 }

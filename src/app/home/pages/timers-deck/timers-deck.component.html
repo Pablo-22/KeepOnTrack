@@ -1,11 +1,14 @@
 <div class="fx-row m-b-3">
     <h1> Add cronometer </h1>
-    <button class="m-t-4" (click)="addStopwatch()"> + </button>
+    <button class="m-t-4 circle-5 center-text" (click)="addStopwatch()"> + </button>
 </div>
 
 <div class="fx-column">
-    <stopwatch class="w-100p" *ngFor="let stopwatch of stopwatchesArray"> </stopwatch>
+    <stopwatch 
+      class="w-100p" 
+      *ngFor="let stopwatch of stopwatchesArray"
+      [cronometer]=stopwatch
+      [deleteCallback]="this.deleteCronometer"> 
+
+    </stopwatch>
 </div>
-
-
-

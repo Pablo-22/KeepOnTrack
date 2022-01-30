@@ -8,17 +8,17 @@
           (blur)="onTitleChange($event)">
             {{title}}
         </h4>
-        <div class="fx-column-center  w-60p">
+        <div class="fx-row-center  w-60p">
 
-            <h1 id="dataChronometer">{{time.timeOutputString}}</h1>
-            <div class="fx-row-center max-w-70p min-w-30p">
+            <h1 id="chronometerOutput">{{cronometer.timeOutputString}}</h1>
+            <div class="fx-row-center max-w-70p min-w-12">
 
                 <button (click)="onPlay()">Play</button>
-                <button>Pause</button>
-                <button>Reset</button>
+                <button (click)="onPause()">Pause</button>
+                <button (click)="onReset()">Reset</button>
             </div>
         </div>
 
-        <button class="btn-txt-only txt-3"> x </button>
+        <button class="btn-txt-only txt-3" (click)="onDelete()"> x </button>
     </div>
 </article>
