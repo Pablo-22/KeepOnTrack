@@ -1,9 +1,9 @@
-<article class="border-1 max-w-40p">
+<article class="border">
 
     <div class="fx-row-center">
 
         <h4 
-          class="max-w-30p"
+          class="max-w-30p no-border editable"
           contenteditable="true"
           (blur)="onTitleChange($event)">
             {{title}}
@@ -11,12 +11,14 @@
         <div class="fx-column-center  w-70p">
 
             <h1 id="dataChronometer">{{time.timeOutputString}}</h1>
-            <div class="fx-row-center w-70p">
+            <div class="fx-row-center max-w-70p min-w-30p">
 
                 <button (click)="onPlay()">play</button>
                 <button>pause</button>
                 <button>reset</button>
             </div>
         </div>
+
+        <button class="btn-txt-only txt-3"> x </button>
     </div>
 </article>

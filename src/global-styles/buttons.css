@@ -73,11 +73,13 @@ button.btn-outline:active{
 
 .btn-txt-only{
 	background-color: transparent;
+	border: none;
     color: var(--primary-color);
 }
 
 .btn-txt-only:hover{
     background-color: transparent;
+	border: none;
     color: var(--primary-color--hover);
 }
 

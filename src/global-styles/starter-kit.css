@@ -490,8 +490,9 @@ section{
 
 .no-border{
 	border:none;
+	outline: none;
 }
 
-.border-1{
+.border{
 	border: var(--size-01) solid var(--gray-1);
 }

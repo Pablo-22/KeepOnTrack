@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Time } from 'src/app/model/time/time';
+import { Cronometer } from 'src/app/model/cronometer/cronometer';
 
 @Component({
   selector: 'stopwatch',
@@ -9,12 +9,12 @@ import { Time } from 'src/app/model/time/time';
 export class StopwatchComponent implements OnInit {
 
   @Input()
+  time:Cronometer = new Cronometer();
+
   title:string = 'Título';
 
-  time:Time;
 
   constructor() {
-    this.time = new Time();
   }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class StopwatchComponent implements OnInit {
     this.title = $event.target.outerText;
   }
 
-  cronometerCall(){
+  incrementTime(){
     this.time.isStarted = true;
 
     this.time.seconds++;
@@ -42,6 +42,6 @@ export class StopwatchComponent implements OnInit {
   }
 
   onPlay(){
-    let chronometerCall = setInterval(this.cronometerCall, 1000);
+    let chronometerCall = setInterval(this.incrementTime, 1000);
   }
 }
