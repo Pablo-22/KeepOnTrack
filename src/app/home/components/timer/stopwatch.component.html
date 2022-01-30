@@ -3,19 +3,19 @@
     <div class="fx-row-center">
 
         <h4 
-          class="max-w-30p no-border editable"
+          class="min-w-20p max-w-20p no-border editable"
           contenteditable="true"
           (blur)="onTitleChange($event)">
             {{title}}
         </h4>
-        <div class="fx-column-center  w-70p">
+        <div class="fx-column-center  w-60p">
 
             <h1 id="dataChronometer">{{time.timeOutputString}}</h1>
             <div class="fx-row-center max-w-70p min-w-30p">
 
-                <button (click)="onPlay()">play</button>
-                <button>pause</button>
-                <button>reset</button>
+                <button (click)="onPlay()">Play</button>
+                <button>Pause</button>
+                <button>Reset</button>
             </div>
         </div>
 
