@@ -1,0 +1,22 @@
+<article class="border-1 max-w-40p">
+
+    <div class="fx-row-center">
+
+        <h4 
+          class="max-w-30p"
+          contenteditable="true"
+          (blur)="onTitleChange($event)">
+            {{title}}
+        </h4>
+        <div class="fx-column-center  w-70p">
+
+            <h1 id="dataChronometer">{{time.timeOutputString}}</h1>
+            <div class="fx-row-center w-70p">
+
+                <button (click)="onPlay()">play</button>
+                <button>pause</button>
+                <button>reset</button>
+            </div>
+        </div>
+    </div>
+</article>
