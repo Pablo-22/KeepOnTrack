@@ -1,6 +1,7 @@
 import { DataEntity } from "../data-entity/data-entity";
 
 export class Cronometer extends DataEntity {
+    title:string;
     timeOutputString:string;
     seconds:number;
     minutes:number;
@@ -10,6 +11,7 @@ export class Cronometer extends DataEntity {
     constructor(){
         super(); 
 
+        this.title = 'Title';
         this.timeOutputString = '00:00:00';
         this.seconds = 0;
         this.minutes = 0;

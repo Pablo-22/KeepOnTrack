@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cronometer } from 'src/app/model/cronometer/cronometer';
 import { TimersDeckComponent } from '../../pages/timers-deck/timers-deck.component';
 import { StopwatchesService } from '../../services/stopwatches/stopwatches.service';
@@ -13,21 +13,22 @@ export class StopwatchComponent implements OnInit {
   @Input()
   cronometer:Cronometer = new Cronometer();
 
-  title:string = 'Título';
-
   chronometerCall:any;
 
   @Input()
   deleteCallback:any;
 
-  constructor(private stopwatchesService:StopwatchesService) {
+  @Output() onDeleteEvent: EventEmitter<any> = new EventEmitter();
+
+  constructor() {
   }
 
   ngOnInit(): void {
+
   }
 
   onTitleChange($event:any) {
-    this.title = $event.target.outerText;
+    this.cronometer.title = $event.target.outerText;
   }
 
   incrementTime(){
@@ -48,6 +49,7 @@ export class StopwatchComponent implements OnInit {
   }
 
   onPlay(){
+
     if(!this.cronometer.isStarted){
 
       this.chronometerCall = setInterval(() =>{
@@ -92,10 +94,16 @@ export class StopwatchComponent implements OnInit {
 
   onReset(){
     this.onPause();
-    this.cronometer = new Cronometer();
+
+    this.cronometer.title = 'Title';
+    this.cronometer.timeOutputString = '00:00:00';
+    this.cronometer.seconds = 0;
+    this.cronometer.minutes = 0;
+    this.cronometer.hours = 0;
+    this.cronometer.isStarted = false;
   }
 
   onDelete(){
-    this.stopwatchesService.deleteCronometer(this.cronometer.id);
+    this.onDeleteEvent.emit(this.cronometer.id);
   }
 }

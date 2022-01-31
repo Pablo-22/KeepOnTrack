@@ -14,13 +14,13 @@
 		--link-color--hover: var(--primary-color--hover); /* Font color for <a> tag at :hover */
 
 
-		--primary-color: #210095; /* Main color on palette */
+		--primary-color: #006b95; /* Main color on palette */
 		--primary-color__font: #FFFF; /* The colour to be used for text above the primary color */
 
 		--primary-color--hover: var(--secondary-color); /* Main color on palette at :hover */
 		--primary__font-color--hover: rgb(255, 255, 255); /* The colour to be used for text above the primary color at :hover */
 
-		--secondary-color: #04004d; /* Secondary color on palette */
+		--secondary-color: #0d9ba0; /* Secondary color on palette */
 		--secondary__font-color: rgb(255, 255, 255); /* The colour to be used for text above the secondary color */
 
 		--hover-secondary-color: #080269;  /* Secondary color on palette at :hover */

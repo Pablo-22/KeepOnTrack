@@ -8,14 +8,26 @@ import { StopwatchesService } from '../../services/stopwatches/stopwatches.servi
 })
 export class TimersDeckComponent implements OnInit {
 
-  constructor(private stopwatchesService:StopwatchesService) { }
+  stopwatchesArray:Cronometer[] = [];
+
+  constructor(private _stopwatchesService:StopwatchesService) {
+    this.stopwatchesArray = _stopwatchesService.stopwatchesArray;
+  }
 
   ngOnInit(): void {
+    
   }
 
   addStopwatch(){
-    let newCronometer = new Cronometer();
+    this._stopwatchesService.addStopwatch();
+  }
 
-    this.stopwatchesArray.push(newCronometer);
+  deleteCronometer(id:string){
+    this._stopwatchesService.deleteCronometer(id);
+    this.stopwatchesArray = this._stopwatchesService.stopwatchesArray;
+  }
+
+  saveCronometers(){
+    this._stopwatchesService.saveCronometersToLocalStorage();
   }
 }

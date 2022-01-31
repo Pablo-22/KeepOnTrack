@@ -1,6 +1,7 @@
 <div class="fx-row m-b-3">
-    <h1> Add cronometer </h1>
-    <button class="m-t-4 circle-5 center-text" (click)="addStopwatch()"> + </button>
+    <h1> Cronometers </h1>
+    <button class="m-t-3 btn-txt-only fa fa-plus-circle txt-2" (click)="addStopwatch()"> </button>
+    <button class="m-t-3 btn-txt-only fa fa-save txt-2" (click)="saveCronometers()"> </button>
 </div>
 
 <div class="fx-column">
@@ -8,7 +9,6 @@
       class="w-100p" 
       *ngFor="let stopwatch of stopwatchesArray"
       [cronometer]=stopwatch
-      [deleteCallback]="this.deleteCronometer"> 
-
+      (onDeleteEvent)="deleteCronometer($event)"> 
     </stopwatch>
 </div>
