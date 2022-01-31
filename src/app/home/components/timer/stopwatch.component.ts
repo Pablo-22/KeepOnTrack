@@ -95,7 +95,6 @@ export class StopwatchComponent implements OnInit {
   onReset(){
     this.onPause();
 
-    this.cronometer.title = 'Title';
     this.cronometer.timeOutputString = '00:00:00';
     this.cronometer.seconds = 0;
     this.cronometer.minutes = 0;
