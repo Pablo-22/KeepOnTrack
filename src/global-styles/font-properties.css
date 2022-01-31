@@ -8,7 +8,7 @@
 	font-family: var(--font-sans);
 
 	/* Body font size */
-	--text-base-size: 1em;
+	--text-base-size: .8em;
   
 	/* Type scale */
 	--text-scale-ratio: 1.25;
